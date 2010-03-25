@@ -3,6 +3,8 @@ import pygtk
 pygtk.require ('2.0')
 import gtk
 import subprocess
+import os
+
 from time import sleep
 
 RIGHT_CLICK = 3
@@ -20,7 +22,7 @@ class SroboTray:
     
     def __init__ (self):
         self.statusIcon = gtk.StatusIcon ()
-        self.statusIcon.set_from_stock (gtk.STOCK_ABOUT)
+        self.statusIcon.set_from_file (os.path.join ("res", "srlogo.png"))
         self.statusIcon.set_visible (True)
         self.statusIcon.set_tooltip ("srobo menu")
         
