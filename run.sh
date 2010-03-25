@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Xephyr -screen 480x272 :3&i
+Xephyr -screen 480x272 :3&
 sleep 3
 URRDISP=$DISPLAY
 export DISPLAY=":3"
