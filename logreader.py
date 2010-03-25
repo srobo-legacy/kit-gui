@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pygtk
-pygtk.require('2.0')
+pygtk.require ('2.0')
 import gtk
 import gobject
 import os
@@ -17,7 +17,7 @@ class LogReader:
     _pipe = None
     
     def __init__ (self, pipe):
-        self._box = gtk.VBox()
+        self._box = gtk.VBox ()
         self._pipe = pipe
     
     def _addTag (self, text):
@@ -36,9 +36,9 @@ class LogReader:
         eb = gtk.EventBox ()
         eb.add (self._box)
         sv = gtk.ScrolledWindow ()
-        sv.add_with_viewport(eb)
-        color = gtk.gdk.color_parse('#ffffff')
-        eb.modify_bg(gtk.STATE_NORMAL, color)
+        sv.add_with_viewport (eb)
+        color = gtk.gdk.color_parse ('#ffffff')
+        eb.modify_bg (gtk.STATE_NORMAL, color)
         
         #add and show
         window.add (sv)
@@ -46,7 +46,7 @@ class LogReader:
 if __name__ == "__main__":
     global reader
     
-    window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    window = gtk.Window (gtk.WINDOW_TOPLEVEL)
     
     #try to make the pipe, if it fails it already exists
     try:
@@ -60,8 +60,8 @@ if __name__ == "__main__":
     reader.addToWindow (window)
     
     #change the window background
-    color = gtk.gdk.color_parse('#ffffff')
-    window.modify_bg(gtk.STATE_NORMAL, color)
+    color = gtk.gdk.color_parse ('#ffffff')
+    window.modify_bg (gtk.STATE_NORMAL, color)
     window.show_all ()
     
     #watch the pipe, and pull data when it's available

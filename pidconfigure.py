@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pygtk
-pygtk.require('2.0')
+pygtk.require ('2.0')
 import gtk
 import dummylib as srobolib
 
@@ -55,7 +55,7 @@ class PidConfigure:
         iSwitcher = SwitchableLabel (srobolib.getPidI, srobolib.setPidI, "I: ")
         dSwitcher = SwitchableLabel (srobolib.getPidD, srobolib.setPidD, "D: ")
         
-        pidBox = gtk.HBox(spacing=10, homogeneous=True)
+        pidBox = gtk.HBox (spacing=10, homogeneous=True)
         pSwitcher.addToContainer (pidBox)
         iSwitcher.addToContainer (pidBox)
         dSwitcher.addToContainer (pidBox)
