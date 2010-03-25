@@ -41,7 +41,7 @@ class SwitchableLabel:
             bBox.add (self._createButton (self._changeValues[0], up))
         
         for i in range (len (self._changeValues) % 2, len (self._changeValues) - 1, 2):
-            tBox = gtk.HBox (spacing = 5)
+            tBox = gtk.HBox (spacing = 5, homogeneous = True)
             tBox.add (self._createButton (self._changeValues[i], up))
             tBox.add (self._createButton (self._changeValues[i + 1], up))
             bBox.add (tBox)
