@@ -9,6 +9,8 @@ class SwitchableLabel:
     _label = None
     _prefix = ""
     _getter, _setter = None, None
+    #used so that values can be changed quickly
+    _changeValues = [1,5,10]
     box = None
     
     def __init__ (self, valueGetter, valueSetter, labelPrefix = ""):
@@ -18,23 +20,44 @@ class SwitchableLabel:
         self._getter = valueGetter
         self._setter = valueSetter
         
-        #create buttons and connect
-        upButton = gtk.Button (label = "+")
-        upButton.connect ('activate', self.update, +1)
+        #create up buttons and add
+        upBox = self._makeButtonBox (True)
+        self.box.add (upBox)
         
-        downButton = gtk.Button (label = "-")
-        downButton.connect ('activate', self.update, -1)
-        
-        #create the label and update it to the current value
+        #create the label and update it to the current value and add to
+        #box
         self._label = gtk.Label ("")
         self._updateLabel ()
-        
-        #add items to the box
-        self.box.add (upButton)
         self.box.add (self._label)
-        self.box.add (downButton)
         
+        #create down buttons and add
+        downBox = self._makeButtonBox (False)
+        self.box.add (downBox)
         
+    def _makeButtonBox (self, up):
+        bBox = gtk.VBox (spacing = 5)
+        
+        if len (self._changeValues) % 2 == 1:
+            bBox.add (self._createButton (self._changeValues[0], up))
+        
+        for i in range (len (self._changeValues) % 2, len (self._changeValues) - 1, 2):
+            tBox = gtk.HBox (spacing = 5)
+            tBox.add (self._createButton (self._changeValues[i], up))
+            tBox.add (self._createButton (self._changeValues[i + 1], up))
+            bBox.add (tBox)
+        
+        return bBox
+    
+    def _createButton (self, value, up):
+        button = None
+        if not up:
+            value = -value
+            button = gtk.Button (label = str (value))
+        else:
+            button = gtk.Button (label = "+" + str (value))
+        button.connect ("activate", self.update, value)
+        return button
+    
     def addToContainer (self, container):
         container.add (self.box)
         
@@ -45,7 +68,7 @@ class SwitchableLabel:
         self._updateLabel ()
     
     def _updateLabel (self):
-        self._label.set_markup ("<span font=\"sans 24\"><b>" + self._prefix + str (self._getter ()) + "</b></span>")
+        self._label.set_markup ("<span font=\"sans 32\"><b>" + self._prefix + str (self._getter ()) + "</b></span>")
 
 class PidConfigure:
     _pLabel = None
