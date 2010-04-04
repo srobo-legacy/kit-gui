@@ -13,6 +13,7 @@ class SroboTray:
     _currentIndex = 0
     
     _apps = [
+             ("Startup checks", ["./checks.py"]),
              ("Log Checker", ["./logreader.py"]), 
              ("PID configure", ["./pidconfigure.py"])
             ]
