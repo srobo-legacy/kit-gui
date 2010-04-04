@@ -25,3 +25,12 @@ def getPidD ():
 def setPidD (value):
     global d
     d = value
+
+def pythonValidate():
+    return True
+
+def motorBoardConnected():
+    return True
+
+checks = [("Code Check", pythonValidate), ("Motor Board Connected", motorBoardConnected)]
+
