@@ -29,7 +29,9 @@ class SroboTray:
         i = 0
         self.menu = gtk.Menu ()
         
-        for title, command in self._apps:
+        #use reversed to execute in top down order, as this is how humans
+        #read things
+        for title, command in reversed (self._apps):
             subprocess.Popen (command, stderr=subprocess.PIPE, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
             sleep (self._sleepTime)
             self.menuItem = gtk.MenuItem (title)
