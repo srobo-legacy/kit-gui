@@ -6,5 +6,5 @@ sleep 3
 DISPLAY="$MYDISP"
 matchbox-panel -ns --orientation north&
 matchbox-window-manager -use_titlebar no&
-python sroboapplet.py
+./sroboapplet.py
 
