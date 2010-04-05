@@ -1,9 +1,10 @@
 #!/bin/bash
 
-Xephyr -screen 480x272 :3&
+MYDISP=":3"
+Xephyr -screen 480x272 $MYDISP&
 sleep 3
 URRDISP=$DISPLAY
-export DISPLAY=":3"
+export DISPLAY="$MYDISP"
 matchbox-panel&
 matchbox-window-manager -use_titlebar no&
 python sroboapplet.py
